@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebAPI.Controllers
 {
@@ -14,6 +15,7 @@ namespace WebAPI.Controllers
             _planeService = planeService;
         }
 
+        [SwaggerOperation(Summary = "Retrieves all planes")]
         [HttpGet]
         public IActionResult Get()
         {
@@ -21,6 +23,7 @@ namespace WebAPI.Controllers
             return Ok(planes);
         }
 
+        [SwaggerOperation(Summary = "Retrieves chosen plane by unique id")]
         [HttpGet("{id}")]
         public IActionResult Get(int id) 
         {
