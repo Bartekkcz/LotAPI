@@ -51,5 +51,13 @@ namespace WebAPI.Controllers
             _planeService.UpdatePlane(updatePlane);
             return NoContent();
         }
+
+        [SwaggerOperation(Summary = "Delete existing plane")]
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            _planeService.DeletePlane(id);
+            return NoContent();
+        }
     }
 }

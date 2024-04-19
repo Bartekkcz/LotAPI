@@ -15,5 +15,6 @@ namespace Application.Interfaces
 
         PlaneDto AddNewPlane(CreatePlaneDto newPlane);
         void UpdatePlane(UpdatePlaneDto updatePlane);
+        void DeletePlane(int id);
     }
 }

@@ -53,6 +53,10 @@ namespace Application.Services
             _planeRepository.Update(plane);
         }
 
-        
+        public void DeletePlane(int id)
+        {
+            var plane = _planeRepository.GetById(id);
+            _planeRepository.Delete(plane);
+        }
     }
 }
