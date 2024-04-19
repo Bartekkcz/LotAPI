@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Dto;
+using Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -33,6 +34,14 @@ namespace WebAPI.Controllers
                 return NotFound();
             }
             return Ok(plane);
+        }
+
+        [SwaggerOperation(Summary = "Create a new plane")]
+        [HttpPost]
+        public IActionResult Create(CreatePlaneDto newPlane)
+        {
+            var plane = _planeService.AddNewPlane(newPlane);
+            return Created($"api/planes/(plane.Id)", plane);
         }
     }
 }

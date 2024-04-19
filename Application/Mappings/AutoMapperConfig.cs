@@ -13,7 +13,10 @@ namespace Application.Mappings
     {
         public static IMapper Initialize() =>
             new MapperConfiguration(cfg =>
-                cfg.CreateMap<Plane, PlaneDto>()
+            {
+                cfg.CreateMap<Plane, PlaneDto>();
+                cfg.CreateMap<CreatePlaneDto, Plane>();
+            }
             ).CreateMapper();
     }
 }

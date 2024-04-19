@@ -12,5 +12,7 @@ namespace Application.Interfaces
     {
         IEnumerable<PlaneDto> GetAllPlanes();
         PlaneDto GetPlaneById(int id);
+
+        PlaneDto AddNewPlane(CreatePlaneDto newPlane);
     }
 }

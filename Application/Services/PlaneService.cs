@@ -1,6 +1,7 @@
 ﻿using Application.Dto;
 using Application.Interfaces;
 using AutoMapper;
+using Domain.Entities;
 using Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace Application.Services
             _planeRepository = planeRepository;
             _mapper = mapper;
         }
+
+
         public IEnumerable<PlaneDto> GetAllPlanes()
         {
             var planes = _planeRepository.GetALL();
@@ -28,6 +31,18 @@ namespace Application.Services
         public PlaneDto GetPlaneById(int id)
         {
             var plane = _planeRepository.GetById(id);
+            return _mapper.Map<PlaneDto>(plane);
+        }
+
+        public PlaneDto AddNewPlane(CreatePlaneDto newPlane)
+        {
+            if (string.IsNullOrEmpty(newPlane.FlightNumber))
+            {
+                throw new Exception("Plane must have a flight number ");
+            }
+
+            var plane = _mapper.Map<Plane>(newPlane);
+            _planeRepository.Add(plane);
             return _mapper.Map<PlaneDto>(plane);
         }
     }
