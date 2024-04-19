@@ -43,5 +43,13 @@ namespace WebAPI.Controllers
             var plane = _planeService.AddNewPlane(newPlane);
             return Created($"api/planes/(plane.Id)", plane);
         }
+
+        [SwaggerOperation(Summary = "Update existing plane")]
+        [HttpPut]
+        public IActionResult Update(UpdatePlaneDto updatePlane) 
+        {
+            _planeService.UpdatePlane(updatePlane);
+            return NoContent();
+        }
     }
 }

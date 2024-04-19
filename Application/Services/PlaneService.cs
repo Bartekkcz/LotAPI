@@ -45,5 +45,14 @@ namespace Application.Services
             _planeRepository.Add(plane);
             return _mapper.Map<PlaneDto>(plane);
         }
+
+        public void UpdatePlane(UpdatePlaneDto updatePlane)
+        {
+            var existingPlane = _planeRepository.GetById(updatePlane.Id);
+            var plane = _mapper.Map(updatePlane, existingPlane);
+            _planeRepository.Update(plane);
+        }
+
+        
     }
 }

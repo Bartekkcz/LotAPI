@@ -16,6 +16,7 @@ namespace Application.Mappings
             {
                 cfg.CreateMap<Plane, PlaneDto>();
                 cfg.CreateMap<CreatePlaneDto, Plane>();
+                cfg.CreateMap<UpdatePlaneDto, Plane>();
             }
             ).CreateMapper();
     }
