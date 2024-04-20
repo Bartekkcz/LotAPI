@@ -1,4 +1,5 @@
 ﻿using Domain.Interfaces;
+using Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,28 +10,28 @@ namespace Infrastructure.Repositories
 {
     public class PlaneRepository : IPlaneRepository
     {
-        private static readonly ISet<Domain.Entities.Plane> _planes = new HashSet<Domain.Entities.Plane>()
+        private readonly PlanesContext _context;
+
+        public PlaneRepository(PlanesContext context)
         {
-            new Domain.Entities.Plane(1, "LO123", DateTime.UtcNow, "Warszawa", "Berlin", "Boeing 787 Dreamliner"),
-            new Domain.Entities.Plane(2, "LO456", DateTime.UtcNow, "Kraków", "Amsterdam", "Embraer 195"),
-            new Domain.Entities.Plane(3, "LO789", DateTime.UtcNow, "Gdańsk", "Londyn", "Boeing 737-800")
-        };
+            _context = context;
+        }
 
         public IEnumerable<Domain.Entities.Plane> GetALL()
         {
-            return _planes;
+            return _context.Planes;
         }
 
         public Domain.Entities.Plane GetById(int id)
         {
-            return _planes.SingleOrDefault(x => x.Id == id);
+            return _context.Planes.SingleOrDefault(x => x.Id == id);
         }
 
         public Domain.Entities.Plane Add(Domain.Entities.Plane plane)
         {
-            plane.Id = _planes.Count() + 1;
             plane.Created = DateTime.UtcNow;
-            _planes.Add(plane);
+            _context.Planes.Add(plane);
+            _context.SaveChanges();
             return plane;
         }
 
@@ -41,7 +42,8 @@ namespace Infrastructure.Repositories
 
         public void Delete(Domain.Entities.Plane plane)
         {
-            _planes.Remove(plane);
+            _context.Planes.Remove(plane);
+            _context.SaveChanges();
         }
     }
 }
