@@ -14,7 +14,5 @@ namespace Application.Dto
         public string DeparturePlace { get; set; }
         public string ArrivalPlace { get; set; }
         public string PlaneType { get; set; }
-
-        
     }
 }

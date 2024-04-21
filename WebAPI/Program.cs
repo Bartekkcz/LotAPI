@@ -23,6 +23,9 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddScoped<IPlaneRepository, PlaneRepository>();
 builder.Services.AddScoped<IPlaneService, PlaneService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 
 builder.Services.AddSingleton(AutoMapperConfig.Initialize());
 

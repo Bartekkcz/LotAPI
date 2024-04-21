@@ -12,12 +12,20 @@ namespace Application.Mappings
     public static class AutoMapperConfig
     {
         public static IMapper Initialize() =>
-            new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<Plane, PlaneDto>();
-                cfg.CreateMap<CreatePlaneDto, Plane>();
-                cfg.CreateMap<UpdatePlaneDto, Plane>();
-            }
-            ).CreateMapper();
+        new MapperConfiguration(cfg =>
+        {
+            cfg.CreateMap<Plane, PlaneDto>();
+            cfg.CreateMap<CreatePlaneDto, Plane>();
+            cfg.CreateMap<UpdatePlaneDto, Plane>();
+
+            cfg.CreateMap<RegisterUserDto, User>();
+            cfg.CreateMap<User, RegisterUserDto>();
+
+            cfg.CreateMap<RegisterUserDto, UserDto>();
+            cfg.CreateMap<UserDto, RegisterUserDto>();
+
+            cfg.CreateMap<User, UserDto>();
+            cfg.CreateMap<Role, RoleDto>();
+        }).CreateMapper();
     }
 }
