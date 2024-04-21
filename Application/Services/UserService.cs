@@ -12,6 +12,7 @@ namespace Application.Services
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IPasswordHasher<User> _passwordHasher;
+        
         public UserService(IUserRepository userRepository, IMapper mapper, IPasswordHasher<User> passwordHasher)
         {
             _userRepository = userRepository;
@@ -19,7 +20,7 @@ namespace Application.Services
             _passwordHasher = passwordHasher;
         }
 
-        public IEnumerable<UserDto> GetAllPlanes()
+        public IEnumerable<UserDto> GetAllUsers()
         {
             var users = _userRepository.GetALL();
             return _mapper.Map<IEnumerable<UserDto>>(users);

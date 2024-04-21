@@ -9,7 +9,7 @@ namespace Application.Interfaces
 {
     public interface IUserService
     {
-        IEnumerable<UserDto> GetAllPlanes();
+        IEnumerable<UserDto> GetAllUsers();
         UserDto GetUserById(int id);
         UserDto AddNewUser(RegisterUserDto newUser);
         void UpdateUser(UserDto updateUser);
