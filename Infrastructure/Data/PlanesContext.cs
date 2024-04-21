@@ -16,6 +16,8 @@ namespace Infrastructure.Data
         }
 
         public DbSet<Plane> Planes { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         public override int SaveChanges()
         {
@@ -35,5 +37,17 @@ namespace Infrastructure.Data
             
             return base.SaveChanges();
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Role>().HasData(
+                new Role { Id = 1, Name = "User" },
+                new Role { Id = 2, Name = "Employee" },
+                new Role { Id = 3, Name = "Admin" }
+            );
+        }
+
     }
 }
