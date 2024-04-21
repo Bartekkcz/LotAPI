@@ -3,11 +3,7 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace Application.Services
 {
@@ -15,11 +11,14 @@ namespace Application.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
-        public UserService(IUserRepository userRepository, IMapper mapper)
+        private readonly IPasswordHasher<User> _passwordHasher;
+        public UserService(IUserRepository userRepository, IMapper mapper, IPasswordHasher<User> passwordHasher)
         {
             _userRepository = userRepository;
             _mapper = mapper;
+            _passwordHasher = passwordHasher;
         }
+
         public IEnumerable<UserDto> GetAllPlanes()
         {
             var users = _userRepository.GetALL();
@@ -37,8 +36,11 @@ namespace Application.Services
             {
                 throw new Exception("User must have an e-mail and a password ");
             }
-
             var user = _mapper.Map<User>(newUser);
+
+            var hashedPassword = _passwordHasher.HashPassword(user, newUser.PasswordHash);
+            user.PasswordHash = hashedPassword;
+
             _userRepository.Add(user);
             return _mapper.Map<UserDto>(newUser);
         }
