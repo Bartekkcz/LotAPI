@@ -81,6 +81,7 @@ namespace Application.Services
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Email, $"{user.Email}"),
+                new Claim(ClaimTypes.Role, $"{user.RoleId}"),   /*.ToString()*/
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));

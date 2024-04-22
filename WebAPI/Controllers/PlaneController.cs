@@ -1,5 +1,6 @@
 ﻿using Application.Dto;
 using Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -8,6 +9,7 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PlaneController : ControllerBase
     {
         private readonly IPlaneService _planeService;
@@ -26,6 +28,7 @@ namespace WebAPI.Controllers
 
         [SwaggerOperation(Summary = "Retrieves chosen plane by unique id")]
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public IActionResult Get(int id) 
         {
             var plane = _planeService.GetPlaneById(id);
@@ -38,6 +41,7 @@ namespace WebAPI.Controllers
 
         [SwaggerOperation(Summary = "Create a new plane")]
         [HttpPost]
+        [Authorize(Roles = "2,3")]
         public IActionResult Create(CreatePlaneDto newPlane)
         {
             var plane = _planeService.AddNewPlane(newPlane);
@@ -46,6 +50,7 @@ namespace WebAPI.Controllers
 
         [SwaggerOperation(Summary = "Update existing plane")]
         [HttpPut]
+        [Authorize(Roles = "2,3")]
         public IActionResult Update(UpdatePlaneDto updatePlane) 
         {
             _planeService.UpdatePlane(updatePlane);
@@ -54,6 +59,7 @@ namespace WebAPI.Controllers
 
         [SwaggerOperation(Summary = "Delete existing plane")]
         [HttpDelete]
+        [Authorize(Roles = "2,3")]
         public IActionResult Delete(int id)
         {
             _planeService.DeletePlane(id);
