@@ -1,5 +1,6 @@
 ﻿using Application.Dto;
 using Application.Interfaces;
+using Application.Validators;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -44,8 +45,19 @@ namespace WebAPI.Controllers
         [Authorize(Roles = "2,3")]
         public IActionResult Create(CreatePlaneDto newPlane)
         {
+            //var validator = new CreatePlaneDtoValidator();
+            //var validationResult = validator.Validate(newPlane);
+            //if (!validationResult.IsValid)
+            //{
+            //    return BadRequest(validationResult.Errors);
+            //}
             var plane = _planeService.AddNewPlane(newPlane);
-            return Created($"api/planes/(plane.Id)", plane);
+            if (plane == null)
+            {
+                return StatusCode(500, "Failed to create plane.");
+            }
+
+            return Created($"api/planes/{plane.Id}", plane);
         }
 
         [SwaggerOperation(Summary = "Update existing plane")]
