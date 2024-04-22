@@ -7,7 +7,6 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebAPI.Controllers
 {
-    /*!!!*/
     [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase

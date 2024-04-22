@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
+    /*  Represents the repository for interacting with role entities in the database  */
     public class RoleRepository : IRoleRepository
     {
         private readonly PlanesContext _context;

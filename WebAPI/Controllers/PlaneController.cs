@@ -45,12 +45,6 @@ namespace WebAPI.Controllers
         [Authorize(Roles = "2,3")]
         public IActionResult Create(CreatePlaneDto newPlane)
         {
-            //var validator = new CreatePlaneDtoValidator();
-            //var validationResult = validator.Validate(newPlane);
-            //if (!validationResult.IsValid)
-            //{
-            //    return BadRequest(validationResult.Errors);
-            //}
             var plane = _planeService.AddNewPlane(newPlane);
             if (plane == null)
             {

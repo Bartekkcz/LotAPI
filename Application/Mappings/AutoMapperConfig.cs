@@ -9,9 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Mappings
 {
-    /*
-     Provides a configuration for AutoMapper to map between different DTOs and entities.
-    */
+    /*  Provides a configuration for AutoMapper to map between different DTOs and entities  */
     public static class AutoMapperConfig
     {
         public static IMapper Initialize() =>

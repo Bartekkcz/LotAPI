@@ -8,7 +8,7 @@ namespace Application.Dto
 {
     public class CreatePlaneDto
     {
-        /* There is no Id, we do not expect the user to provide Id */
+        /* There is no Id, we do not expect the user to provide the Id */
         public string FlightNumber { get; set; }
         public DateTime? DepartureDate { get; set; }
         public string DeparturePlace { get; set; }

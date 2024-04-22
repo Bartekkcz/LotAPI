@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data
 {
+    /*  Represents the database context for the application.  */
     public class PlanesContext : DbContext
     {
         public PlanesContext(DbContextOptions options) : base(options)
-        {
-        }
+        {   }
 
         public DbSet<Plane> Planes { get; set; }
         public DbSet<User> Users { get; set; }
@@ -34,7 +34,6 @@ namespace Infrastructure.Data
                     ((AuditableEntity)entityEntry.Entity).Created = DateTime.UtcNow;
                 }
             }
-            
             return base.SaveChanges();
         }
 
@@ -48,6 +47,5 @@ namespace Infrastructure.Data
                 new Role { Id = 3, Name = "Admin" }
             );
         }
-
     }
 }

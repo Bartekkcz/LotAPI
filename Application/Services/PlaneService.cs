@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
+    /*  Service class for managing plane-related operations.    */
     public class PlaneService : IPlaneService
     {
         private readonly IPlaneRepository _planeRepository;

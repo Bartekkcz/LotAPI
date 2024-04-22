@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
+    /*  Represents the repository for interacting with user entities in the database  */
     public class UserRepository : IUserRepository
     {
         private readonly PlanesContext _context;

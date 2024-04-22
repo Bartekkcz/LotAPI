@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
+    /*  Represents the repository for interacting with plane entities in the database  */
     public class PlaneRepository : IPlaneRepository
     {
         private readonly PlanesContext _context;
