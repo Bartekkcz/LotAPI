@@ -14,5 +14,6 @@ namespace Application.Interfaces
         UserDto AddNewUser(RegisterUserDto newUser);
         void UpdateUser(UserDto updateUser);
         void DeleteUser(int id);
+        string GenerateJwt(LoginDto loginUser);
     }
 }

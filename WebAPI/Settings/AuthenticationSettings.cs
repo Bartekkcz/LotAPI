@@ -1,6 +1,8 @@
-﻿namespace WebAPI.Settings
+﻿using Application.Interfaces;
+
+namespace WebAPI.Settings
 {
-    public class AuthenticationSettings
+    public class AuthenticationSettings : IAuthenticationSettings
     {
         public string JwtKey { get; set; }
         public int JwtExpireDays { get; set; }

@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
         }
 
         [SwaggerOperation(Summary = "Register a new user")]
-        [HttpPost]
+        [HttpPost("Register")]
         public IActionResult Create(RegisterUserDto newUser)
         {
             var validationResult = _registerUserValidator.Validate(newUser);
@@ -33,6 +33,14 @@ namespace WebAPI.Controllers
 
             var user = _userService.AddNewUser(newUser);
             return Created($"api/users/{user.Id}", user);
+        }
+
+        [SwaggerOperation(Summary = "Login to an existing account")]
+        [HttpPost("Login")]
+        public IActionResult Login(LoginDto loginUser)
+        {
+            string token = _userService.GenerateJwt(loginUser);
+            return Ok(token);
         }
     }
 }
