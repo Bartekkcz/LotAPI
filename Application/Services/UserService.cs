@@ -17,10 +17,13 @@ namespace Application.Services
         private readonly IMapper _mapper;
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly IAuthenticationSettings _authenticationSettings;
-        
-        public UserService(IUserRepository userRepository, IMapper mapper, IPasswordHasher<User> passwordHasher, IAuthenticationSettings authenticationSettings) 
+        private readonly IRoleRepository _roleRepository;
+
+
+        public UserService(IUserRepository userRepository, IRoleRepository roleRepository, IMapper mapper, IPasswordHasher<User> passwordHasher, IAuthenticationSettings authenticationSettings) 
         {
             _userRepository = userRepository;
+            _roleRepository = roleRepository;
             _mapper = mapper;
             _passwordHasher = passwordHasher;
             _authenticationSettings = authenticationSettings;
@@ -43,10 +46,22 @@ namespace Application.Services
             {
                 throw new Exception("User must have an e-mail and a password ");
             }
+
+            // Get role name based on roleId
+            var roleName = _roleRepository.GetById(newUser.RoleId).Name;
+
+            if (string.IsNullOrEmpty(roleName))
+            {
+                throw new Exception("Role does not exist.");
+            }
+
             var user = _mapper.Map<User>(newUser);
 
             var hashedPassword = _passwordHasher.HashPassword(user, newUser.PasswordHash);
             user.PasswordHash = hashedPassword;
+
+            // Set role name
+            user.Role = new Role { Name = roleName };
 
             _userRepository.Add(user);
             return _mapper.Map<UserDto>(newUser);

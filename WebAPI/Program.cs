@@ -23,7 +23,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers()
     .AddFluentValidation(configuration =>
     {
-        configuration.RegisterValidatorsFromAssemblyContaining<RegisterUserDtoValidator>(); 
+        configuration.RegisterValidatorsFromAssemblyContaining<RegisterUserDtoValidator>();
+        configuration.RegisterValidatorsFromAssemblyContaining<CreatePlaneDtoValidator>();
     });
 builder.Services.AddDbContext<PlanesContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PlanesCS")));
@@ -43,7 +44,7 @@ builder.Services.AddSwaggerGen(c =>
         Type = SecuritySchemeType.Http,
         Scheme = "Bearer"
     });
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
             new OpenApiSecurityScheme

@@ -1,5 +1,6 @@
 ﻿using Domain.Interfaces;
 using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,8 @@ namespace Infrastructure.Repositories
         public void Update(Domain.Entities.Plane plane)
         {
             plane.LastModified = DateTime.UtcNow;
+            _context.Entry(plane).State = EntityState.Modified;
+            _context.SaveChanges();
         }
 
         public void Delete(Domain.Entities.Plane plane)

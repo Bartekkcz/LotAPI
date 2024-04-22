@@ -16,7 +16,8 @@ namespace Application.Validators
 
             RuleFor(user => user.Email)
                 .NotEmpty().WithMessage("Email address is required.")
-                .MaximumLength(320).WithMessage("Email address must not exceed 320 characters.");
+                .MaximumLength(320).WithMessage("Email address must not exceed 320 characters.")
+                .EmailAddress().WithMessage("Invalid email address format.");
 
             RuleFor(user => user.PasswordHash).MinimumLength(8);
 
