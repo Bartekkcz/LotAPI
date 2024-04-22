@@ -25,6 +25,7 @@ builder.Services.AddControllers()
     {
         configuration.RegisterValidatorsFromAssemblyContaining<RegisterUserDtoValidator>();
         configuration.RegisterValidatorsFromAssemblyContaining<CreatePlaneDtoValidator>();
+        configuration.RegisterValidatorsFromAssemblyContaining<UpdatePlaneDtoValidator>();
     });
 builder.Services.AddDbContext<PlanesContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PlanesCS")));

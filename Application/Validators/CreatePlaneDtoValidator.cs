@@ -39,8 +39,6 @@ namespace Application.Validators
                 .Must(BeValidDate).WithMessage("Departure date must be in the format YYYY-MM-DD.");
 
 
-
-
             bool BeValidPlaneType(string planeType)
             {
                 // List of PLL LOT fleet
@@ -71,8 +69,7 @@ namespace Application.Validators
                     return false;
                 }
 
-                // Możesz dodać dodatkową logikę walidacji daty, jeśli to konieczne
-                // Na przykład, sprawdzenie, czy data jest w przyszłości
+                // Is date in the future?
 
                 return true;
             }
