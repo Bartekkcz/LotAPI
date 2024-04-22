@@ -44,6 +44,14 @@ To run this application, ensure you have the following installed:
     3. Run the application by executing the dotnet run command in the WebAPI project directory.
     4. Access the API endpoints using a web browser or API testing tool.
 
+## Authentication with JWT Token
+All actions in this API require authentication using a JWT token. To access the CRUD methods, you need to follow these steps:
+
+    1. Register an Account: Start by registering an account in the system.
+    2. Login: After registration, log in to your account to obtain a JWT token.
+    3. Authorization: Use the obtained JWT token to authorize your requests. You can do this by clicking on the "Authorize" button and entering the token in the form.
+Once you have successfully authenticated and, if applicable, have a role 2 or 3, you can access and utilize the CRUD functionalities.
+
 ## Testing
 To run unit tests:
 
